@@ -15,8 +15,7 @@ import nl.ndat.tvlauncher.util.loadPreferredLabel
 class TileResolver {
 	companion object {
 		private val launcherCategories = arrayOf(
-			Intent.CATEGORY_LEANBACK_LAUNCHER,
-			Intent.CATEGORY_LAUNCHER
+			Intent.CATEGORY_LEANBACK_LAUNCHER
 		)
 
 		const val APP_ID_PREFIX = "app:"
@@ -49,6 +48,9 @@ class TileResolver {
 			}
 			.flatten()
 			.distinctBy { it.activityInfo.name }
+			.sortedBy {
+				it.activityInfo.loadLabel(packageManager).toString()
+			}
 			.map { resolveInfo -> createTile(packageManager, resolveInfo) }
 	}
 

@@ -46,14 +46,6 @@ class TileListAdapter : ListAdapter<Tile, TileListAdapter.ViewHolder>() {
 		holder.container.setOnClickListener {
 			onActivate?.invoke(tile, it)
 		}
-
-		holder.container.setOnLongClickListener {
-			if (onMenu == null) false
-			else {
-				onMenu?.invoke(tile, it)
-				true
-			}
-		}
 	}
 
 	class ViewHolder(binding: ViewCardTileBinding) : RecyclerView.ViewHolder(binding.root) {
